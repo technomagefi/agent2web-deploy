@@ -13,20 +13,30 @@
   "workers_dev": true,
   "preview_urls": false,
 
-  // Deploy-to-Cloudflare reads these and provisions the resources, filling the
-  // ids back in. Two bindings, no KV: OAuth tokens live in D1 alongside the
-  // sites, because agent2web brings its own authorization server.
+  // ---------------------------------------------------------------------
+  // This fork is the deployment source for a2w.koodiorja.com. Everything
+  // below this line differs from upstream on purpose: upstream ships a
+  // placeholder id because it cannot know anyone's account, and a real
+  // deployment has to name its own resources.
+  //
+  // To take upstream changes:  git fetch upstream && git merge upstream/main
+  // Shared history makes that a fast-forward; the only file that can ever
+  // conflict is this one, and only when upstream edits it.
+  // ---------------------------------------------------------------------
+  // Two bindings, no KV: OAuth tokens live in D1 alongside the sites,
+  // because agent2web brings its own authorization server.
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "agent2web",
-      "database_id": "placeholder-replaced-on-provision"
+      "database_id": "fdc5ccbf-08ff-499b-84c9-94b04da8b2d8"
     }
   ],
   "r2_buckets": [
     {
       "binding": "BLOBS",
-      "bucket_name": "agent2web-sites"
+      "bucket_name": "agent2web-sites",
+      "preview_bucket_name": "agent2web-sites"
     }
   ],
 
